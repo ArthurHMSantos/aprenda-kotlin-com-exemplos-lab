@@ -2,7 +2,7 @@ enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
 
 class Usuario
 
-data class ConteudoEducacional(var nome: String, val duracao: Int = 60)
+data class ConteudoEducacional(var nome: String, val duracao: Int = 60, val nivel: Nivel = Nivel.BASICO)
 
 class Formacao(val nome: String, var conteudos: MutableList<ConteudoEducacional> = mutableListOf()) {
 
@@ -15,9 +15,9 @@ class Formacao(val nome: String, var conteudos: MutableList<ConteudoEducacional>
 
 fun main() {
     // Criando objetos de exemplo para ConteudoEducacional
-    val conteudo1 = ConteudoEducacional("Introdução ao Kotlin", 120)
-    val conteudo2 = ConteudoEducacional("Programação Orientada a Objetos em Kotlin")
-    val conteudo3 = ConteudoEducacional("Kotlin Avançado", 90)
+    val conteudo1 = ConteudoEducacional("Introdução ao Kotlin", 120, Nivel.BASICO)
+    val conteudo2 = ConteudoEducacional("Programação Orientada a Objetos em Kotlin", nivel = Nivel.INTERMEDIARIO)
+    val conteudo3 = ConteudoEducacional("Kotlin Avançado", nivel = Nivel.DIFICIL)
 
     // Criando um objeto de Formacao
     val formacao = Formacao("Formação Kotlin")
@@ -39,7 +39,7 @@ fun main() {
     println("Formação: ${formacao.nome}")
     println("Conteúdos:")
     for (conteudo in formacao.conteudos) {
-        println("- ${conteudo.nome} (${conteudo.duracao} minutos)")
+        println("- ${conteudo.nome} (${conteudo.duracao} minutos) - Nível: ${conteudo.nivel}")
     }
     println("Inscritos:")
     for (inscrito in formacao.inscritos) {
